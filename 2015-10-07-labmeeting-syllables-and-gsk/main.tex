@@ -14,6 +14,7 @@
 \usepackage{shadow}
 %\usepackage{movie15}
 
+\usepackage{tcolorbox}
 
 % Create a ``Wider'' command to reduce margins.  Put
 % ``\Wider{\lipsum[2]}'' in a frame...
@@ -97,6 +98,26 @@
 \subsection{Workflow}
 
 \begin{frame}
+  \frametitle{Workflow}
+  \begin{tcolorbox}[colback=blue!5,colframe=blue!40!black,title={\tt zftftb\_song\_clust.m} --- Jeff]
+    Align raw data
+  \end{tcolorbox}
+  \begin{center}
+    $\downarrow$
+  \end{center}
+  \begin{tcolorbox}[colback=blue!5,colframe=blue!40!black,title={\tt learn\_detector.m} --- Ben]
+    Find your favourite syllables; train neural network
+  \end{tcolorbox}
+  \begin{center}
+    $\downarrow$
+  \end{center}
+  \begin{tcolorbox}[colback=blue!5,colframe=blue!40!black,title={\tt nnfft.vi} --- Ben]
+    Run the neural network in LabView
+  \end{tcolorbox}
+\end{frame}
+  
+
+\begin{frame}
   \frametitle{Jeff's song alignment}
   Install from {\tt https://github.com/jmarkow}:
   \begin{itemize}
@@ -111,7 +132,7 @@
     \item Cluster
   \end{itemize}
 
-  \noindent Align about 500 songs.
+  \noindent Align $\gtrapprox$ 500 songs.
   \begin{description}
     \item[Input:] Raw recordings
     \item[Output:] A Matlab file of aligned songs
@@ -127,7 +148,7 @@
   Load {\tt birds/align/learn\_detector.m}:
 
   \begin{description}
-    \item[Input:] a file of aligned songs.
+    \item[Input:] Aligned songs from {\tt zftftb\_song\_clust.m}
     \item[Output:]
       \begin{itemize}
       \item neural network file
@@ -175,6 +196,19 @@
 
 \begin{frame}
   \frametitle{Detection}
+  \begin{center}
+    \includegraphics[width=8cm]{detector2-spectrogram}
+  \end{center}
+  \par
+  \begin{center}
+    \includegraphics[width=6cm]{detector2-roc}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Detection}
+  
   \Wider[3em]{
     \includegraphics<1->[width=\textwidth]{syllablebank-0}
     \par
@@ -188,15 +222,6 @@
   }
 \end{frame}
 
-\begin{frame}
-  \begin{center}
-    \includegraphics[width=8cm]{detector2-spectrogram}
-  \end{center}
-  \par
-  \begin{center}
-    \includegraphics[width=6cm]{detector2-roc}
-  \end{center}
-\end{frame}
 
 
 \begin{frame}
@@ -219,7 +244,7 @@
   \frametitle{Current status}
   \begin{itemize}
     \item Matlab has high accuracy!
-    \item Labview: lower accuracy.  Bug?
+    \item Labview: somewhat lower accuracy.  Bug?
     \item Inferior song detector
     \item Nathan?
   \end{itemize}
@@ -238,8 +263,8 @@
     \item CNS
     \item Peripheral --- Win!
     \end{itemize}
-  \item Optimise pulse shapes
-  \item Develop control policies to systematically modify behaviours
+  \item Optimise stimulation parameters
+  \item Learn control policies to elicit desired behaviours
   \end{itemize}
 \end{frame}
 
@@ -253,19 +278,19 @@
     \item Carbon fibres
     \item Carbon nanotubes
     \item Silicon carbide
+    \item Optical\dots?
   \end{itemize}
-  Simultaneous stimulation and recording may require\dots {\em optical?}
 \end{frame}
 
 \begin{frame}
   \frametitle{Plexon stimulator}
   \begin{itemize}
+    \item 16 channels
     \item Current-controlled
     \item Arbitrary pulse waveforms
-    \item 30 nA resolution
-    \item 16 independent channels
+    \item 30 nA resolution, possibly\dots
     \item Matlab API
-    \item Reprogramming time $\simeq$ 0.05s/channel
+    \item Reprogramming time $\simeq$ 0.05s/channel (?)
   \end{itemize}
 \end{frame}
     
@@ -279,21 +304,21 @@
       \item $\geq$ 16 channels
       \item Easy impedance measurements
       \item Low noise
-      \item {\it Very poor blanking}
+      \item {\em Very poor blanking!}
         \begin{itemize}
         \item artifacts at $>$ 3ms
         \end{itemize}
     \end{itemize}
-    \column{33mm}
+    \column{36mm}
     A M Systems
     \begin{itemize}
       \item 2 or 4 channels per amp
         \begin{itemize}
-          \item (Connectivity?)
+          \item Connectivity?
         \end{itemize}
+      \item Few artifacts
       \item Difficult to do impedance measurements
       \item Headstages need to be built
-      \item Few artifacts
     \end{itemize}
     \column{33mm}
     TDT
@@ -329,20 +354,27 @@
 \subsection{Results}
 
 \begin{frame}
+  \frametitle{Antedromic HVC$\leftarrow$X response (Intan)}
   \includegraphics[width=\textwidth]{inspect-example-0}
 \end{frame}
 
+
 \begin{frame}
+  \frametitle<1-5>{Finding a response threshold}
+  \frametitle<6>{Nerve is cut\dots somewhere\dots?}
+  \frametitle<7->{Cutting nerve between stim and recording electrodes}
   \Wider[6em]{
-    \includegraphics<+>[width=\textwidth]{win-162309}
-    \includegraphics<+>[width=\textwidth]{win-162509}
-    \includegraphics<+>[width=\textwidth]{win-162511}
-    \includegraphics<+>[width=\textwidth]{win-165006}
-    \includegraphics<+>[width=\textwidth]{win-165827}
-    \includegraphics<+>[width=\textwidth]{win-165830}
-    \includegraphics<+>[width=\textwidth]{win-165832}
-    \includegraphics<+>[width=\textwidth]{win-165834}
-    \includegraphics<+>[width=\textwidth]{win-165838}
+    \includegraphics<1>[width=\textwidth]{win-162309}
+    \includegraphics<2>[width=\textwidth]{win-162502}
+    \includegraphics<3>[width=\textwidth]{win-162506}
+    \includegraphics<4>[width=\textwidth]{win-162509}
+    \includegraphics<5>[width=\textwidth]{win-162511}
+    \includegraphics<6>[width=\textwidth]{win-165006}
+    \includegraphics<7>[width=\textwidth]{win-165827}
+    \includegraphics<8>[width=\textwidth]{win-165830}
+    \includegraphics<9>[width=\textwidth]{win-165832}
+    \includegraphics<10>[width=\textwidth]{win-165834}
+    \includegraphics<11>[width=\textwidth]{win-165838}
   }
 \end{frame}
 
