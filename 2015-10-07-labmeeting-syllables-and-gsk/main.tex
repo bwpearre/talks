@@ -4,6 +4,7 @@
 %\usetheme{Goettingen}
 \usetheme{Malmoe}
 \usefonttheme{default}
+%\setbeamersize{text margin left=5pt,text margin right=5pt}
 
 \usepackage{hyperref}
 \usepackage{subfigure}
@@ -12,6 +13,18 @@
 \usepackage{multimedia}
 \usepackage{shadow}
 %\usepackage{movie15}
+
+
+% Create a ``Wider'' command to reduce margins.  Put
+% ``\Wider{\lipsum[2]}'' in a frame...
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
 
 %\usepackage[english]{babel}
 %\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
@@ -135,9 +148,10 @@
 
 \begin{frame}
   \frametitle{LabView interface}
-
-  \includegraphics<1>[width=11cm]{labview-spaghetti}
-  \includegraphics<2>[width=11cm]{labview-frontend}
+  \Wider[3em]{
+    \includegraphics<1>[width=\textwidth]{labview-spaghetti}
+    \includegraphics<2>[width=\textwidth]{labview-frontend}
+  }
 
   \begin{description}
     \item[Input:] Neural network file\dots
@@ -161,15 +175,17 @@
 
 \begin{frame}
   \frametitle{Detection}
-  \includegraphics<1->[width=\textwidth]{syllablebank-0}
-  \par
-  \includegraphics<2>[width=\textwidth]{syllablebank-1}
-  \includegraphics<3>[width=\textwidth]{syllablebank-2}
-  \includegraphics<4>[width=\textwidth]{syllablebank-3}
-  \includegraphics<5>[width=\textwidth]{syllablebank-4}
-  \includegraphics<6>[width=\textwidth]{syllablebank-5}
-  \includegraphics<7>[width=\textwidth]{syllablebank-6}
-  \includegraphics<8>[width=\textwidth]{syllablebank-roc}
+  \Wider[3em]{
+    \includegraphics<1->[width=\textwidth]{syllablebank-0}
+    \par
+    \includegraphics<2>[width=\textwidth]{syllablebank-1}
+    \includegraphics<3>[width=\textwidth]{syllablebank-2}
+    \includegraphics<4>[width=\textwidth]{syllablebank-3}
+    \includegraphics<5>[width=\textwidth]{syllablebank-4}
+    \includegraphics<6>[width=\textwidth]{syllablebank-5}
+    \includegraphics<7>[width=\textwidth]{syllablebank-6}
+    \includegraphics<8>[width=\textwidth]{syllablebank-roc}
+  }
 \end{frame}
 
 \begin{frame}
@@ -185,12 +201,16 @@
 
 \begin{frame}
   \frametitle{Testing: timing}
-  \includegraphics[width=8cm]{detector-timing-1}
+  \begin{center}
+    \includegraphics[width=8cm]{detector-timing-1}
+  \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Testing: timing}
-  \includegraphics[width=8cm]{detector-timing-2}
+  \begin{center}
+    \includegraphics[width=8cm]{detector-timing-2}
+  \end{center}
 \end{frame}
 
 \subsection{Current status}
@@ -293,12 +313,16 @@
 
 \begin{frame}
   \frametitle{{\tt plexme}}
-  \includegraphics[width=\textwidth]{plexme-faked}
+  \Wider[3em]{
+    \includegraphics[width=\textwidth]{plexme-faked}
+  }
 \end{frame}
 
 \begin{frame}
   \frametitle{{\tt inspect}}
-  \includegraphics[width=\textwidth]{inspect-example-1}
+  \Wider[3em]{
+    \includegraphics[width=\textwidth]{inspect-example-1}
+  }
 \end{frame}
 
 
@@ -308,32 +332,65 @@
   \includegraphics[width=\textwidth]{inspect-example-0}
 \end{frame}
 
+\begin{frame}
+  \Wider[6em]{
+    \includegraphics<+>[width=\textwidth]{win-162309}
+    \includegraphics<+>[width=\textwidth]{win-162509}
+    \includegraphics<+>[width=\textwidth]{win-162511}
+    \includegraphics<+>[width=\textwidth]{win-165006}
+    \includegraphics<+>[width=\textwidth]{win-165827}
+    \includegraphics<+>[width=\textwidth]{win-165830}
+    \includegraphics<+>[width=\textwidth]{win-165832}
+    \includegraphics<+>[width=\textwidth]{win-165834}
+    \includegraphics<+>[width=\textwidth]{win-165838}
+  }
+\end{frame}
+
 %%% Future! %%%
 \section{The Future!}
-\subsection{Goals}
+\subsection{Ideas}
 
 \begin{frame}
-  \frametitle{Goals}
+  \frametitle{Stimulation optimisation}
+  \begin{columns}
+    \column{35mm}
+    Criteria?
+    \begin{itemize}
+      \item Minimise voltage
+      \item See response (binary?)
+      \item Response separation
+      \item Directed change to song
+        \begin{itemize}
+          \item Acute
+          \item Chronic
+        \end{itemize}
+    \end{itemize}
+    \column{35mm}
+    Policy outputs?
+    \begin{itemize}
+      \item Square pulse width
+      \item Arbitrary pulse shape
+      \item Pulse train timing
+      \item Current steering
+      \item Channel timing
+    \end{itemize}
+    \column{35mm}
+    Policy inputs?
+    \begin{itemize}
+      \item Vocalisation
+      \item Other motor output?
+      \item Neural activity
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{To do:}
   \begin{itemize}
-    \item Optimise stimulation
-      % What optimisation criteria?
-      % What policy variables?
-      % What model?  Canary?
+    \item Choose design
+    \item Detect neural response (spike)
   \end{itemize}
 \end{frame}
-
-\subsection{Approach}
-
-\begin{frame}
-  \frametitle{Stochastic Optimisation}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Reinforcement Learning}
-\end{frame}
-
-\subsection{Timeline}
-
 
 
 \end{document}
