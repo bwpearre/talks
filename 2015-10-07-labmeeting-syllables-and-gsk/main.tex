@@ -147,6 +147,12 @@
   \end{itemize}
   Load {\tt birds/align/learn\_detector.m}:
 
+\end{frame}
+
+\begin{frame}
+  \frametitle{{\tt learn\_detector.m} (Matlab)}
+  \includegraphics[width=11cm]{song-spectrogram-with-alignment-1}
+
   \begin{description}
     \item[Input:] Aligned songs from {\tt zftftb\_song\_clust.m}
     \item[Output:]
@@ -158,17 +164,13 @@
       
 \end{frame}
 
-\begin{frame}
-  \frametitle{Choose a moment during song}
-  Tune some parameters\dots
-
-  \includegraphics[width=11cm]{song-spectrogram-with-alignment-1}
-
-  Run it\dots
-\end{frame}
+% FIXME
+% (1) Newer version of the LabView block diagram
+% (2) Jeff's alignment code, running
+% (3) 
 
 \begin{frame}
-  \frametitle{LabView interface}
+  \frametitle{{\tt nnfft.vi} (LabView)}
   \Wider[3em]{
     \includegraphics<1>[width=\textwidth]{labview-spaghetti}
     \includegraphics<2>[width=\textwidth]{labview-frontend}
@@ -263,6 +265,7 @@
     \item CNS
     \item Peripheral --- Win!
     \end{itemize}
+  \item Demonstrate chronically implanted electrodes
   \item Optimise stimulation parameters
   \item Learn control policies to elicit desired behaviours
   \end{itemize}
@@ -287,6 +290,7 @@
   \begin{itemize}
     \item 16 channels
     \item Current-controlled
+    \item Externally triggered
     \item Arbitrary pulse waveforms
     \item 30 nA resolution, possibly\dots
     \item Matlab API
@@ -299,7 +303,7 @@
   \frametitle{Recording amplifiers}
   \begin{columns}
     \column{33mm}
-    Intan
+    {\bf Intan}
     \begin{itemize}
       \item $\geq$ 16 channels
       \item Easy impedance measurements
@@ -310,7 +314,7 @@
         \end{itemize}
     \end{itemize}
     \column{36mm}
-    A M Systems
+    {\bf A M Systems}
     \begin{itemize}
       \item 2 or 4 channels per amp
         \begin{itemize}
@@ -321,7 +325,7 @@
       \item Headstages need to be built
     \end{itemize}
     \column{33mm}
-    TDT
+    {\bf TDT}
     \begin{itemize}
       \item $\geq$ 16 channels
       \item No impedance measurements
@@ -420,6 +424,7 @@
   \frametitle{To do:}
   \begin{itemize}
     \item Choose design
+    \item Implement appropriate learning algorithm(s?)
     \item Detect neural response (spike)
   \end{itemize}
 \end{frame}
