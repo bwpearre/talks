@@ -50,13 +50,13 @@
   \vskip0pt%
 }
 
-\title{Software for Mind Control}
+\title[Chronic Electrode Bundles]{Chronic Recording, Stimulation, and Steering Control with Electrode Bundles}
 
 \author{Ben Pearre}
 %\institute[]{
 %  Computer Science\\
 %  University of Colorado at Boulder, USA}
-\date{\today\\{\small (Rev. \svnrev)}}
+\date{\today}
 %\date{\today}
 
 \begin{document}
@@ -129,13 +129,14 @@
   \begin{description}
   \item[Current Steering] using finite element analysis
     \begin{itemize}
-    \item Fast
-    \item Somewhat effective
+    \item Faster than hand-tuning
+    \item Some success
     \item Coarse-grained
     \item All models are wrong.  Some models are useful.
     \end{itemize}
   \item[Recording] for ``closed-loop'' therapy
     \begin{itemize}
+    \item Large populations
     \item Good luck
     \end{itemize}
   \end{description}
@@ -242,6 +243,22 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Combinatorial optimisation}
+  \includegraphics[width=0.95\textwidth]{plexme}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Combinatorial optimisation}
+  Can current steering minimise stimulation voltage?
+  \begin{enumerate}
+  \item Pick a current-steering configuration
+  \item Find response threshold
+  \item Check each channel for voltage
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Voltage minimisation}
   \includegraphics<+>[width=\textwidth]{current_steering_voltages}
   \includegraphics<+>[width=\textwidth]{current_steering_voltages_valid}
@@ -308,7 +325,7 @@
 
 
 
-\subsection{Gradient estimation}
+\subsection{Optimisation}
 
 \begin{frame}[label=appendixeR]
   \frametitle{Gradient estimation: eR / Stochastic Approximation}
