@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for i in `grep includegraphics main.tex | cut -d\{ -f 2 | cut -d\} -f 1` ; do
+        git add $i.eps
+done
