@@ -50,7 +50,7 @@
   \vskip0pt%
 }
 
-\title[$\alpha$go]{$\alpha$go}
+\title[AlphaGo]{AlphaGo}
 
 \author{Ben Pearre}
 %\institute[]{
@@ -61,50 +61,71 @@
 
 \begin{document}
 
-\begin{frame}
-  \titlepage
-\end{frame}
+%\begin{frame}
+%  \titlepage
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Outline}
-  \tableofcontents
-\end{frame}
+%\begin{frame}
+%  \frametitle{Outline}
+%  \tableofcontents
+%\end{frame}
 
+\begin{frame}[plain]
+  \begin{center}
+    \includegraphics<+>[width=\textwidth]{knot}
+    \includegraphics<+>[width=\textwidth]{knot_closeup}
+    \includegraphics<+>[width=\textwidth]{darwin}
+    \includegraphics<+>[width=\textwidth]{Go-players}
+    \includegraphics<+>[width=\textwidth]{ZhongguoMeishuQuanji}
+    \includegraphics<+>[width=\textwidth]{Wenwu_1189}
+    \includegraphics<+>[width=\textwidth]{Sedol-Alphago}
+  \end{center}
+\end{frame}
 
 %\begin{frame}
 %  \outline
 %\end{frame}
 
 
-\section{Go}
+\section{Go and Machines}
 
-\subsection{Rules}
+\subsection{Go tutorial}
 
 \begin{frame}
-  \frametitle{The Rules}
-  \href{http://playgo.to/index-e.html}{\beamergotobutton{The Way To Go}}
+  \frametitle{Go tutorial\dots}
+  \begin{center}
+    \href{http://playgo.to/index-e.html}{\beamergotobutton{The Way To Go}}
+  \end{center}
 \end{frame}
 
-\subsection{How big is it?}
+\subsection{Machine gameplay with Minimax}
 
 \begin{frame}
-  \frametitle{How to win a game}
-  \begin{itemize}
-  \item Take best move on both sides until someone wins
-  \item How many games?
-    \begin{description}
-    \item[Branching factor:] At each position, $n$ possible moves
-    \item[Length:] game lasts $m$ moves
-    \end{description}
-    $n^m$ possible games
-  \end{itemize}
+  \frametitle{Machine play with Minimax:}
+  \begin{center}
+    \includegraphics[width=\textwidth]{minimax}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How many games?}
+  \begin{description}
+  \item[Branching factor:] At each position, $n$ possible moves
+  \item[Length:] game lasts $m$ moves
+  \end{description}
+  \vskip 1 cm
+  \begin{tcolorbox}
+    \begin{center}
+      $n^m$ possible games
+    \end{center}
+  \end{tcolorbox}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Size of games}
   \begin{tabular}{l|ccc}
-    Game & Branching factor & Length & $\log_{10}\mbox{\# Games}$\\ \hline
+    Game & Branching factor & Length & $\log_{10}\mbox{(\# Games)}$\\ \hline
     Tic-Tac-Toe & 4 & 9 & 5 \\
     Connect Four & 4 & 36 & 21 \\
     Checkers ($8\times 8$) & 2.8 & 70 & 31 \\
@@ -116,24 +137,22 @@
 \end{frame}
 
 
-\section{Game theory}
-
-\subsection{Minimax search}
-
 \begin{frame}
   \frametitle{Reducing the computational complexity}
   \begin{description}
-  \item[Branching factor]:\hfill
-    \begin{itemize}
-    \item Pruning (e.g. $\alpha$-$\beta$)
-    \item Monte Carlo tree search
-    \end{itemize}
   \item[Length:]\hfill
     \begin{itemize}
     \item Estimate the value of non-terminal states
     \end{itemize}
+  \item[Branching factor]:\hfill
+    \begin{itemize}
+    \item $\alpha$-$\beta$ Pruning
+      \begin{itemize}
+      \item $O\left(\sqrt{n^m}\right)$ if moves are sorted
+      \end{itemize}
+    \item Monte Carlo Tree Search of promising moves
+    \end{itemize}
   \end{description}
-  How to approximate these things?
 \end{frame}
 
 
@@ -147,8 +166,9 @@
     \end{itemize}
   \item[Chess:]\hfill
     \begin{itemize}
-    \item Control centre of board
     \item Material
+    \item Mobility
+    \item Control centre of board
     \end{itemize}
   \item[Go:]\hfill
     \begin{itemize}
@@ -158,17 +178,27 @@
       \end{itemize}
     \end{itemize}
   \end{description}
+  \begin{tcolorbox}
+    \begin{center}
+      Intuition!
+    \end{center}
+  \end{tcolorbox}
 \end{frame}
 
 \begin{frame}
   \frametitle{Move selection}
   Only examine promising moves.
+  \vskip 1 cm
   \begin{tcolorbox}
     In the beginner's mind there are many possibilities. In the expert's mind there are few.
   \end{tcolorbox}
-  How to build an expert?
+  \vskip 1 cm
+  \begin{tcolorbox}
+    \begin{center}
+      Intuition!
+    \end{center}
+  \end{tcolorbox}
 \end{frame}
-
 
 
 \subsection{Convolutional neural networks}
@@ -192,6 +222,7 @@
 
 \begin{frame}
   \frametitle{Convolutional Neural Networks}
+  Inspired by Hubel \& Wiesel 1968
   \vskip 1 cm
   \includegraphics[width=\textwidth]{ConvolutionalNet}
 
@@ -201,6 +232,10 @@
   \end{center}
 \end{frame}
 
+\section{AlphaGo}
+
+\subsection{The Policies}
+
 \begin{frame}
   \frametitle{Supervised learning of policy networks: $p_\sigma(a|s)$}
   Predict the expert's move:
@@ -208,7 +243,7 @@
   \item Given board state $s$, predict probability of move $a$
   \item 13 convolutional layers
     \begin{itemize}
-    \item Input: 48 feature planes
+    \item Input: 48 features
     \item Layer 1: 192 of $5\times 5$
     \item Layers 2--12: 192 of $3\times 3$
     \item Rectifier nonlinearities
@@ -226,7 +261,7 @@
 
 \begin{frame}
   \frametitle{Supervised learning of policy networks II: $p_\pi(a|s)$}
-  Predict the expert's move:
+  Predict the expert's move (faster):
   \begin{itemize}
   \item Given board state $s$, predict probability of move $a$
   \item Small pattern features
@@ -275,63 +310,129 @@
 
 
 
-\section{Move selection}
-
-
-\begin{frame}
-  \frametitle{Evaluating a potential move}
-  \begin{itemize}
-  \item Choose action $a$ from $p_\sigma$ + exploration term
-  \item Evaluate new position 2 ways:
-    \begin{itemize}
-    \item $v_\theta(s)$
-    \item Monte Carlo rollout using the fast policy $p_\pi$
-    \end{itemize}
-    \item Combine the evaluations
-  \end{itemize}
-  \vskip 1 cm
-  \begin{tcolorbox}
-    \begin{center}
-      Choose the most visited move!
-    \end{center}
-  \end{tcolorbox}
-\end{frame}
-
+\subsection{Monte Carlo Tree Search}
 
 \begin{frame}
   \frametitle{Monte Carlo Tree Search}
   New node: get priors from $p_\sigma(s,a)$ + exploration term
   \vskip 5 mm
-  \includegraphics[width=\textwidth]{MCTS}
+  \includegraphics<1>[width=\textwidth]{MCTS}
+  \includegraphics<2>[width=\textwidth]{MCTS-go}
   \begin{columns}
-    \column{0.5\textwidth}
+    \column{0.33\textwidth}
     Early:
     \begin{itemize}
     \item High prior probability
     \item Low visit count
     \end{itemize}
-    \column{0.5\textwidth}
+
+    \column{0.33\textwidth}
     Later:
     \begin{itemize}
     \item High action value
     \end{itemize}
+
+    \column{0.33\textwidth}
+    \begin{tcolorbox}
+      \begin{center}
+        Return the most visited move
+      \end{center}
+    \end{tcolorbox}
   \end{columns}
 \end{frame}
+
+
+\subsection{Move selection}
+
+
+\begin{frame}
+  \frametitle{Evaluating a potential move}
+  \begin{itemize}
+  \item Evaluate potential new position $s'$ in 2 ways:
+    \begin{itemize}
+    \item $v_\theta(s')$
+    \item Monte Carlo rollout (using the fast policy $p_\pi$)
+      \begin{itemize}
+      \item Initialise MCTS priors $\forall a$ from $p_\sigma(s',a)$ + exploration term
+      \end{itemize}
+    \end{itemize}
+    \item Combine the evaluations ($\lambda$).
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\textwidth]{alphago-policy-example-1}
+  \end{center}
+  \vskip 1 mm
+  \begin{columns}
+    \column{0.33\textwidth}
+    Evaluation of all successors $s′$ of the root position $s$, using the value network $v_\theta(s′)$; estimated winning percentages are shown for the top evaluations.
+    \column{0.33\textwidth}
+    Action values $Q(s, a)$ for each edge $(s, a)$ in the tree from root position $s$; averaged over value network evaluations only ($\lambda = 0$).
+    \column{0.33\textwidth}
+    Action values $Q(s, a)$, averaged over rollout evaluations only ($\lambda = 1$).
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\textwidth]{alphago-policy-example-2}
+  \end{center}
+  \vskip 1 mm
+  \begin{columns}
+    \column{0.33\textwidth}
+    Move probabilities directly from the SL policy network, $p_\sigma(a|s)$; reported as a percentage (if above 0.1\%)
+    \column{0.33\textwidth}
+    Percentage frequency with which actions were selected from the root during simulations.
+    \column{0.33\textwidth}
+    AlphaGo's move, and the most likely continuation of the game.
+  \end{columns}
+\end{frame}
+
 
 \section{Results}
 
 \begin{frame}
   \frametitle{Results}
+  \includegraphics[width=\textwidth]{alphago-perf}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Victory!}
   \begin{itemize}
+  \item Beat Fan Hui 2p 5-0
   \item Beat Lee Sedol 9p 4-1
+    \begin{itemize}
+    \item \href{http://ps.waltheri.net/database/game/72538/}{\beamergotobutton{One of 'em!}}
+    \end{itemize}
   \item $10^3$ times fewer position evaluations than Deep Blue!
     \begin{itemize}
     \item Learns to aggressively examine only a few promising moves
     \item Learns intuition for values of intermediate positions
     \item Plays like a human?
     \end{itemize}
+    \item ``AlphaGo's play makes us feel free, that no move is impossible. Now everyone is trying to play in a style that hasn't been tried before.'' --Zhou Ruiyang 9p
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}
+  \item Ke Jie 9p
+    \begin{itemize}
+    \item May 23--27
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[height=\textheight,keepaspectratio]{Go-fight}
+  \end{center}
+\end{frame}
 
 \end{document}
