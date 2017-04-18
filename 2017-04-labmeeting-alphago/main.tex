@@ -26,6 +26,20 @@
   }%
 }
 
+\tcbset{ % colback=blue!5,colframe=blue!75!black,
+    noparskip,
+    colback=blue!5, %background color of the box
+    colframe=blue!70, %color of frame and title background
+    coltext=black, %color of body text
+    coltitle=black, %color of title text 
+    fonttitle=\bfseries,
+    update/.style={coltitle=red, 
+                     colframe=gray!40},
+    quote/.style={coltitle=gray!20, 
+                     colframe=black,             
+                     colback=green!5},
+    }
+
 
 %\usepackage[english]{babel}
 %\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
@@ -70,7 +84,7 @@
 %  \tableofcontents
 %\end{frame}
 
-\begin{frame}[plain]
+\begin{frame}[plain,label=Kasparov]
   \begin{center}
     \includegraphics<+>[width=\textwidth]{knot}
     \includegraphics<+>[width=\textwidth]{knot_closeup}
@@ -78,6 +92,7 @@
     \includegraphics<+>[width=\textwidth]{Go-players}
     \includegraphics<+>[width=\textwidth]{ZhongguoMeishuQuanji}
     \includegraphics<+>[width=\textwidth]{Wenwu_1189}
+    \includegraphics<+>[height=\textheight,keepaspectratio]{Go-fight}
     \includegraphics<+>[width=\textwidth]{Sedol-Alphago}
   \end{center}
 \end{frame}
@@ -108,7 +123,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{How many games?}
+  \frametitle{How big is the game tree?}
   \begin{description}
   \item[Branching factor:] At each position, $n$ possible moves
   \item[Length:] game lasts $m$ moves
@@ -144,20 +159,21 @@
     \begin{itemize}
     \item Estimate the value of non-terminal states
     \end{itemize}
-  \item[Branching factor]:\hfill
+  \item[Branching factor:]\hfill
     \begin{itemize}
     \item $\alpha$-$\beta$ Pruning
       \begin{itemize}
       \item $O\left(\sqrt{n^m}\right)$ if moves are sorted
       \end{itemize}
-    \item Monte Carlo Tree Search of promising moves
+    \item Monte Carlo Tree Search {\em of promising moves}
     \end{itemize}
   \end{description}
 \end{frame}
 
 
+
 \begin{frame}
-  \frametitle{Static Evaluation}
+  \frametitle{Estimating the value of non-terminal states}
   \begin{description}
   \item[Checkers:]\hfill
     \begin{itemize}
@@ -185,18 +201,48 @@
   \end{tcolorbox}
 \end{frame}
 
+
+\subsection{Monte Carlo Tree Search}
+
+\begin{frame}<1>[label=mcts]
+  \frametitle{Monte Carlo Tree Search \only<2>{II}}
+  \includegraphics<1>[width=\textwidth]{MCTS}
+  \includegraphics<2>[width=\textwidth]{MCTS-go}
+  
+  \begin{columns}
+    \column{0.75\textwidth}
+    \begin{tcolorbox}[title=Selecting a move for roll-out]
+
+      \begin{columns}
+        \column{0.7\textwidth}
+        Early:
+        \begin{itemize}
+        \item High prior probability\only<1>{?} \only<2>{from $p_\sigma(s,a)$!}
+        \item Low visit count
+        \end{itemize}
+        
+        \column{0.3\textwidth}
+        Later:
+        \begin{itemize}
+        \item Success rate
+        \end{itemize}
+      \end{columns}
+    \end{tcolorbox}
+
+    \column{0.25\textwidth}
+    \begin{tcolorbox}[title=Return]
+      The most visited move
+    \end{tcolorbox}
+  \end{columns}
+\end{frame}
+
+
 \begin{frame}
-  \frametitle{Move selection}
+  \frametitle{Ignoring questionable moves}
   Only examine promising moves.
   \vskip 1 cm
-  \begin{tcolorbox}
-    In the beginner's mind there are many possibilities. In the expert's mind there are few.
-  \end{tcolorbox}
-  \vskip 1 cm
-  \begin{tcolorbox}
-    \begin{center}
-      Intuition!
-    \end{center}
+  \begin{tcolorbox}[title=Intuition]
+    In the beginner's mind there are many possibilities. In the expert's mind there are few. --Shunryu Suzuki
   \end{tcolorbox}
 \end{frame}
 
@@ -222,7 +268,7 @@
 
 \begin{frame}
   \frametitle{Convolutional Neural Networks}
-  Inspired by Hubel \& Wiesel 1968
+  Inspired by Hubel \& Wiesel 1968?
   \vskip 1 cm
   \includegraphics[width=\textwidth]{ConvolutionalNet}
 
@@ -308,45 +354,13 @@
 \end{frame}
 
 
-
-
-\subsection{Monte Carlo Tree Search}
-
-\begin{frame}
-  \frametitle{Monte Carlo Tree Search}
-  New node: get priors from $p_\sigma(s,a)$ + exploration term
-  \vskip 5 mm
-  \includegraphics<1>[width=\textwidth]{MCTS}
-  \includegraphics<2>[width=\textwidth]{MCTS-go}
-  \begin{columns}
-    \column{0.33\textwidth}
-    Early:
-    \begin{itemize}
-    \item High prior probability
-    \item Low visit count
-    \end{itemize}
-
-    \column{0.33\textwidth}
-    Later:
-    \begin{itemize}
-    \item High action value
-    \end{itemize}
-
-    \column{0.33\textwidth}
-    \begin{tcolorbox}
-      \begin{center}
-        Return the most visited move
-      \end{center}
-    \end{tcolorbox}
-  \end{columns}
-\end{frame}
-
+\againframe<2>{mcts}
 
 \subsection{Move selection}
 
 
 \begin{frame}
-  \frametitle{Evaluating a potential move}
+  \frametitle{Choosing a move}
   \begin{itemize}
   \item Evaluate potential new position $s'$ in 2 ways:
     \begin{itemize}
@@ -429,10 +443,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \begin{center}
-    \includegraphics[height=\textheight,keepaspectratio]{Go-fight}
-  \end{center}
-\end{frame}
+\againframe<7>{Kasparov}
 
 \end{document}
