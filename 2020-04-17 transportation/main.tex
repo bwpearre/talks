@@ -84,7 +84,7 @@
 %\end{frame}
 
 
-\section{Macmillan 2014}
+\section{Macmillan {\it et al.} 2014}
 
 \subsection{Authors}
 
@@ -179,7 +179,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Fagnant 2014}
+\section{Fagnant \& Kockelman 2014}
 
 \subsection{Authors}
 
@@ -280,7 +280,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Struben 2006}
+\section{Struben \& Sterman 2006}
 
 \begin{frame}
   \frametitle{Transition challenges for alternative fuel vehicle and transportation systems}
@@ -321,7 +321,7 @@
   Main result: adoption governed by critical-mass threshold
 \end{frame}
 
-\section{Model}
+\subsection{Model}
 
 \begin{frame}
   \includegraphics[height=\textheight]{Sterman-fig-1.jpg}
@@ -335,21 +335,82 @@
   \includegraphics[height=\textheight]{Sterman-fig-3.jpg}
 \end{frame}
 
+\subsection{Results}
 
-    
 \begin{frame}
   \begin{eqnarray*}
     \frac{\mathrm{d}W_{ij}}{\mathrm{d}t}&=&\eta_{ij}(1-W_{ij})-\phi_{ij}W_{ij}\\
     \eta_{ij}&:& \textrm{Social exposure}\\
-    \phi_{ij}&:& \textrm{Willingness-to-convert half-life (?)}
+    \phi_{ij}&:& \textrm{Willingness-to-convert forgetfulness}
   \end{eqnarray*}
 
-  \includegraphics[width=\textwidth]{Sterman-fig-4.jpg}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{Sterman-fig-4.jpg}
+  \end{center}
 \end{frame}
     
 \begin{frame}
   \includegraphics[height=\textheight]{Sterman-fig-5.jpg}
 \end{frame}
+
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Sterman-fig-5.jpg}
+    \column{0.6\textwidth}
+    \begin{eqnarray*}
+      \frac{\mathrm{d}V_{2}}{\mathrm{d}t}&=&\frac{\sigma_{22}V_2+\sigma_{12}(N-V_2)-V_2}{\lambda}\\
+      \sigma_{i2}&=& \frac{W_{i2}a_{i2}}{W_{i1}a_{i1}+W_{i2}a_{i2}}\\
+      a_{ij}&:&\textrm{affinity}
+    \end{eqnarray*}
+  \end{columns}
+\end{frame}
     
+
+\begin{frame}
+  \includegraphics<+>[width=\textwidth]{Sterman-fig-6a.jpg}
+  \includegraphics<+>[width=\textwidth]{Sterman-fig-6b.jpg}
+  \includegraphics<+>[width=\textwidth]{Sterman-fig-6c.jpg}
+\end{frame}
+
+
+\begin{frame}
+  \includegraphics[height=\textheight]{Sterman-fig-7.jpg}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[height=\textheight]{Sterman-fig-9.jpg}
+\end{frame}
+
+\subsection{Discussion}
+\begin{frame}
+  \frametitle{Discussion}
+  \begin{itemize}
+  \item Installed base vs.~replacement rate vs.~cars-per-driver
+  \item Car sharing may increase versatility
+  \item How compelling would new cars have to be? (here $\leq 2.5$)
+  \item Who Killed The Electric Car: why didn't competitors jump in?
+  \item Didn't anticipate targeted advertisement
+  \item cf. Tesla
+  \end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Final points}
+\begin{frame}
+  \frametitle{Synergies}
+  \begin{itemize}
+  \item How does Struben\&Sterman's analysis relate to bike vs.~car?
+  \item Are cars now improving exponentially? Fleet obsolescence:
+    \begin{itemize}
+    \item Self-driving: how compelling new cars are vs.~old (safety/insurance, opportunity cost\dots)?
+    \item OTA updates: hardware ages, software is always new?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+  
+  
 
 \end{document}
